@@ -1,0 +1,137 @@
+:root{
+  --bg:#0f1115; --surface:#181b22; --surface2:#1f232c; --border:#2a2f3a;
+  --fg:#e8eaf0; --muted:#9aa1b0; --accent:#e63c3c; --accent2:#ff7a45;
+  --ok:#3fb96b; --warn:#e6a23c; --danger:#e0483f;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font-family:"Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+.hidden{display:none!important}
+.muted{color:var(--muted);font-size:.9rem}
+
+header{padding:24px 0 0;border-bottom:1px solid var(--border)}
+h1{font-size:1.5rem;margin-bottom:14px}
+h1::before{content:"汉 ";color:var(--accent)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:8px 16px;text-align:center;min-width:86px}
+.stat span{font-size:1.3rem;font-weight:700;display:block}
+.stat label{font-size:.72rem;color:var(--muted)}
+.progressbar{height:8px;background:var(--surface2);border-radius:99px;overflow:hidden;margin-bottom:14px}
+#progressFill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s}
+
+nav{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:12px}
+.tab{background:none;border:1px solid transparent;color:var(--muted);padding:8px 14px;border-radius:10px;cursor:pointer;font-size:.95rem}
+.tab:hover{color:var(--fg)}
+.tab.active{background:var(--surface);border-color:var(--border);color:var(--fg)}
+
+main{padding:22px 0 40px}
+.view{display:none}
+.view.active{display:block}
+
+.info{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:18px}
+
+/* flashcard */
+.card-area{display:flex;flex-direction:column;align-items:center;gap:18px}
+.card{width:min(440px,92vw);height:280px;perspective:1000px;cursor:pointer}
+.card-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.card-front,.card-back{position:absolute;inset:0;backface-visibility:hidden;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px}
+.card-back{transform:rotateY(180deg)}
+.hanzi{font-size:4.2rem;font-weight:600}
+.hanzi.small{font-size:2.6rem}
+.pinyin{font-size:1.5rem;color:var(--accent2)}
+.meaning{font-size:1.05rem;color:var(--fg);text-align:center}
+.trad{color:var(--muted);font-size:.9rem}
+.hint{color:var(--muted);font-size:.8rem}
+.card-controls{display:flex;gap:10px}
+.queue-left{color:var(--muted);font-size:.9rem}
+
+.btn{background:var(--surface2);border:1px solid var(--border);color:var(--fg);padding:12px 22px;border-radius:10px;font-size:1rem;cursor:pointer;transition:transform .1s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ok{background:var(--ok);border-color:transparent;color:#fff}
+.btn.warn{background:var(--warn);border-color:transparent;color:#1a1a1a}
+.btn.danger{background:var(--danger);border-color:transparent;color:#fff}
+.btn.ghost{background:transparent}
+
+.done-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;text-align:center}
+.done-box h2{margin-bottom:8px}
+.done-box p{color:var(--muted);margin-bottom:16px}
+.done-box .btn{margin:4px}
+
+/* temalar */
+.theme-list{display:flex;flex-direction:column;gap:10px}
+.theme-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;cursor:pointer}
+.theme-item:hover{border-color:var(--accent)}
+.theme-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.theme-name{font-weight:600}
+.theme-count{color:var(--muted);font-size:.85rem}
+.theme-bar{height:6px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.theme-bar>div{height:100%;background:var(--ok)}
+.theme-words{display:none;margin-top:12px;flex-wrap:wrap;gap:8px}
+.theme-item.open .theme-words{display:flex}
+.word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:.95rem;cursor:pointer}
+.word-chip.known{border-color:var(--ok);opacity:.55;text-decoration:line-through}
+
+/* quiz */
+.quiz-q{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;text-align:center;font-size:1.6rem;margin-bottom:16px}
+.quiz-q .sub{font-size:.9rem;color:var(--muted);margin-top:6px}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quiz-opt{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;font-size:1.05rem;text-align:center}
+.quiz-opt:hover{border-color:var(--accent2)}
+.quiz-opt.correct{background:var(--ok);color:#fff;border-color:transparent}
+.quiz-opt.wrong{background:var(--danger);color:#fff;border-color:transparent}
+.quiz-opt:disabled{cursor:default}
+
+/* tum kelimeler */
+.search{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--fg);padding:12px 16px;font-size:1rem;margin-bottom:14px}
+.all-list{display:flex;flex-direction:column;gap:6px}
+.all-row{display:flex;align-items:baseline;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 14px}
+.all-row.known{opacity:.5}
+.all-row .hz{font-size:1.3rem;min-width:70px}
+.all-row .py{color:var(--accent2);min-width:110px}
+.all-row .mn{color:var(--muted);font-size:.85rem;flex:1}
+.all-row .sp{cursor:pointer}
+.all-row .tick{cursor:pointer;font-size:1.1rem}
+
+/* ayarlar */
+.settings-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.settings-box h3{margin:14px 0 10px}
+.settings-box h3:first-child{margin-top:0}
+.goal-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.goal-btn{background:var(--surface2);border:1px solid var(--border);color:var(--fg);padding:10px 18px;border-radius:10px;cursor:pointer;font-size:1rem}
+.goal-btn.active{background:var(--accent);border-color:transparent}
+
+footer{padding:16px 0 30px;text-align:center}
+
+@media (max-width:560px){
+  .hanzi{font-size:3.2rem}
+  .quiz-opts{grid-template-columns:1fr}
+  .all-row .mn{display:none}
+}
+
+/* iPhone 17 Pro Max (440pt) ve dokunmatik optimizasyon */
+@media (max-width:480px){
+  header{padding-top:calc(16px + env(safe-area-inset-top))}
+  footer{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+  .wrap{padding:0 12px}
+  h1{font-size:1.25rem;margin-bottom:10px}
+  .stats{gap:6px}
+  .stat{padding:6px 10px;min-width:64px}
+  .stat span{font-size:1.05rem}
+  .stat label{font-size:.62rem}
+  .tab{padding:10px 12px;font-size:.9rem}
+  .card{width:100%;height:300px}
+  .hanzi{font-size:3.6rem}
+  .card-controls{width:100%}
+  .card-controls .btn{flex:1;padding:14px 8px;font-size:.95rem}
+  .quiz-opt{padding:16px;font-size:1rem}
+  .btn{min-height:44px}
+  .tab{min-height:44px}
+  .word-chip{padding:8px 12px}
+  .all-row{padding:10px 12px}
+  .all-row .mn{display:block;font-size:.8rem}
+  .search{font-size:16px} /* iOS otomatik zoom engelleme */
+}
+*{-webkit-tap-highlight-color:transparent}
+body{touch-action:manipulation}

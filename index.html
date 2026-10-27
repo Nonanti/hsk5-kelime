@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="HSK Kampı">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="manifest" href="manifest.json">
+<title>HSK 1-5 Kelime Kampı — 2496 Kelime</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>HSK 1-5 Kelime Kampı</h1>
+    <div class="stats">
+      <div class="stat"><span id="statKnown">0</span><label>öğrenildi</label></div>
+      <div class="stat"><span id="statTotal">2496</span><label>toplam</label></div>
+      <div class="stat"><span id="statPct">0%</span><label>tamam</label></div>
+      <div class="stat"><span id="statStreak">0</span><label>gün seri 🔥</label></div>
+      <div class="stat"><span id="statEta">—</span><label>gün kaldı</label></div>
+    </div>
+    <div class="progressbar"><div id="progressFill"></div></div>
+  </div>
+  <nav class="wrap">
+    <button class="tab active" data-view="today">📅 Bugün</button>
+    <button class="tab" data-view="themes">🗂 Temalar</button>
+    <button class="tab" data-view="quiz">❓ Quiz</button>
+    <button class="tab" data-view="all">📖 Tüm Kelimeler</button>
+    <button class="tab" data-view="settings">⚙ Ayarlar</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- BUGÜN -->
+  <section id="view-today" class="view active">
+    <div id="todayInfo" class="info"></div>
+    <div id="cardArea" class="card-area hidden">
+      <div class="card" id="flashcard">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="hanzi" id="cardHanzi"></div>
+            <div class="hint" id="cardLevel"></div>
+            <div class="hint">cevabı görmek için karta tıkla</div>
+          </div>
+          <div class="card-back">
+            <div class="hanzi small" id="cardHanziBack"></div>
+            <div class="pinyin" id="cardPinyin"></div>
+            <div class="meaning" id="cardMeaning"></div>
+            <div class="trad" id="cardTrad"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-controls">
+        <button id="btnSpeak" class="btn ghost">🔊 Dinle</button>
+        <button id="btnAgain" class="btn warn">🔁 Tekrar</button>
+        <button id="btnKnow" class="btn ok">✅ Biliyorum</button>
+      </div>
+      <div id="queueLeft" class="queue-left"></div>
+    </div>
+    <div id="todayDone" class="hidden done-box">
+      <h2>🎉 Bugünkü hedef tamam!</h2>
+      <p id="doneSummary"></p>
+      <button id="btnExtra" class="btn">➕ Ekstra 10 kelime</button>
+      <button id="btnGoQuiz" class="btn ghost">❓ Quize git</button>
+    </div>
+  </section>
+
+  <!-- TEMALAR -->
+  <section id="view-themes" class="view">
+    <div id="themeList" class="theme-list"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="view-quiz" class="view">
+    <div id="quizSetup" class="info">
+      <p>Quiz, şu ana kadar <b>öğrendiğin</b> kelimelerden 10 soru sorar.</p>
+      <button id="btnStartQuiz" class="btn ok">▶ Quizi Başlat</button>
+    </div>
+    <div id="quizArea" class="hidden">
+      <div id="quizQ" class="quiz-q"></div>
+      <div id="quizOpts" class="quiz-opts"></div>
+      <div id="quizStatus" class="queue-left"></div>
+    </div>
+    <div id="quizResult" class="hidden done-box"></div>
+  </section>
+
+  <!-- TÜMÜ -->
+  <section id="view-all" class="view">
+    <input type="text" id="searchBox" class="search" placeholder="🔍 ara: hanzi, pinyin veya anlam...">
+    <div id="allList" class="all-list"></div>
+  </section>
+
+  <!-- AYARLAR -->
+  <section id="view-settings" class="view">
+    <div class="settings-box">
+      <h3>Günlük hedef</h3>
+      <div id="goalButtons" class="goal-buttons"></div>
+      <h3>Veri</h3>
+      <p class="muted">İlerlemen bu tarayıcıda (localStorage) saklanır.</p>
+      <button id="btnReset" class="btn danger">🗑 Tüm ilerlemeyi sıfırla</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap muted">
+  HSK 1-5 (2.0) resmi 2012 listesi · 2496 kelime · önce seviye, sonra tema (günlük hayattan soyuta), sonra kullanım sıklığı
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
